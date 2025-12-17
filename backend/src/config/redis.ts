@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Simple Redis configuration for Railway deployment
+// Clean simple Redis config for Railway
 export const redisConfig = {
   url: process.env.REDIS_URL || 'redis://localhost:6379',
   maxRetriesPerRequest: null,
@@ -10,7 +10,7 @@ export const redisConfig = {
   lazyConnect: true,
 };
 
-// Simple logger function (fallback)
+// Clean simple logger for Railway
 export const logger = {
   info: (message: string, meta?: any) => console.log(`[INFO] ${message}`, meta || ''),
   error: (message: string, meta?: any) => console.error(`[ERROR] ${message}`, meta || ''),

@@ -9,9 +9,9 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import dotenv from 'dotenv';
 
-// Import simple configs
-import { databaseConfig as db } from '@/config/database-simple';
-import { redisConfig as redis } from '@/config/redis-simple';
+// Import clean configs
+import { databaseConfig as db } from '@/config/database';
+import { redisConfig as redis } from '@/config/redis';
 
 // Import routes
 import authRoutes from '@/routes/auth';
