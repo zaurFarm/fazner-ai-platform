@@ -571,4 +571,5 @@ export const cleanupLogger = () => {
 process.on('SIGTERM', cleanupLogger);
 process.on('SIGINT', cleanupLogger);
 
+export { loggerInstance as logger };
 export default loggerInstance;
