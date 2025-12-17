@@ -186,7 +186,7 @@ class APIClient {
   }
 
   // Chat methods
-  asyncId?: string) getChatSessions(project {
+  async getChatSessions(projectId?: string) {
     try {
       const params = projectId ? { projectId } : {};
       const response = await this.client.get('/chat/sessions', { params });
