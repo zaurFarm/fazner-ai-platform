@@ -65,8 +65,7 @@
     "pino": "^8.16.2",
     "pino-pretty": "^10.2.0",
     "node-cache": "^5.1.2",
-    "lru-cache": "^10.1.0",
-    "zlib": "^1.0.5"
+    "lru-cache": "^10.1.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
