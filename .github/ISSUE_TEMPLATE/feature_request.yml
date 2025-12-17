@@ -1,0 +1,90 @@
+name: Feature request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thanks for suggesting a new feature! We appreciate your input.
+
+- type: textarea
+  id: feature-description
+  attributes:
+    label: Feature description
+    description: Describe the feature you'd like to see implemented.
+    placeholder: |
+      As a [type of user], I want [goal/action] so that [benefit/value].
+  validations:
+    required: true
+
+- type: textarea
+  id: problem-solved
+  attributes:
+    label: What problem does this feature solve?
+    description: Explain the problem or pain point this feature would address.
+    placeholder: Currently, users cannot...
+
+- type: textarea
+  id: proposed-solution
+  attributes:
+    label: Proposed solution
+    description: How do you think this feature should work?
+    placeholder: I suggest that the application should...
+
+- type: textarea
+  id: alternative-solutions
+  attributes:
+    label: Alternative solutions you've considered
+    description: Have you considered any other approaches to solve this problem?
+    placeholder: I also considered...
+
+- type: dropdown
+  id: priority
+  attributes:
+    label: Priority level
+    options:
+      - Low - Nice to have
+      - Medium - Would improve user experience
+      - High - Important for core functionality
+      - Critical - Blocking issue
+
+- type: checkboxes
+  id: feature-type
+  attributes:
+    label: Feature type
+    description: What type of feature is this?
+    options:
+      - label: New functionality
+      - label: Enhancement to existing feature
+      - label: Performance improvement
+      - label: User interface improvement
+      - label: API enhancement
+      - label: Documentation improvement
+
+- type: textarea
+  id: additional-context
+  attributes:
+    label: Additional context
+    description: Add any other context, screenshots, or examples about the feature request here.
+    placeholder: Screenshots, mockups, user stories, etc.
+
+- type: textarea
+  id: implementation-ideas
+  attributes:
+    label: Implementation ideas
+    description: Any thoughts on how this could be implemented?
+    placeholder: This could be implemented by...
+
+- type: checkboxes
+  id: contribution
+  attributes:
+    label: Contribution
+    description: Would you like to contribute to implementing this feature?
+    options:
+      - label: I'm willing to help implement this feature
+      - label: I can provide design mockups
+      - label: I can help with testing
+      - label: I can write documentation

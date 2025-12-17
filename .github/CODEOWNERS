@@ -1,0 +1,54 @@
+# CODEOWNERS - автоматическое назначение ревьюеров
+
+# Все изменения требуют ревью от владельцев
+* @YOUR_USERNAME
+
+# Frontend изменения
+/frontend/ @YOUR_USERNAME @frontend-maintainer
+/frontend/src/components/ @YOUR_USERNAME @ui-specialist
+/frontend/src/store/ @YOUR_USERNAME @state-management-expert
+/frontend/package.json @YOUR_USERNAME @frontend-maintainer
+
+# Backend изменения  
+/backend/ @YOUR_USERNAME @backend-maintainer
+/backend/src/server.ts @YOUR_USERNAME @backend-architect
+/backend/src/routes/ @YOUR_USERNAME @api-specialist
+/backend/src/config/ @YOUR_USERNAME @devops-engineer
+/backend/package.json @YOUR_USERNAME @backend-maintainer
+
+# Конфигурация и инфраструктура
+/.github/ @YOUR_USERNAME @devops-engineer
+/docker-compose.yml @YOUR_USERNAME @devops-engineer
+/Dockerfile @YOUR_USERNAME @devops-engineer
+/.env.example @YOUR_USERNAME @security-expert
+/package.json @YOUR_USERNAME @project-maintainer
+
+# Документация
+/README.md @YOUR_USERNAME @tech-writer
+/docs/ @YOUR_USERNAME @tech-writer
+/*.md @YOUR_USERNAME @tech-writer
+
+# AI и ML компоненты
+/backend/src/utils/api-protection.ts @YOUR_USERNAME @security-expert
+/frontend/src/api/ @YOUR_USERNAME @ai-specialist
+/backend/src/routes/proxy.ts @YOUR_USERNAME @ai-specialist
+
+# Безопасность
+**/*.env* @YOUR_USERNAME @security-expert
+**/secrets/** @YOUR_USERNAME @security-expert
+**/keys/** @YOUR_USERNAME @security-expert
+
+# Тесты
+/**/*.test.ts @YOUR_USERNAME @qa-engineer
+/**/*.test.tsx @YOUR_USERNAME @qa-engineer
+/**/__tests__/** @YOUR_USERNAME @qa-engineer
+/coverage/ @YOUR_USERNAME @qa-engineer
+
+# Миграции и схемы БД
+/backend/prisma/ @YOUR_USERNAME @database-specialist
+/**/*.sql @YOUR_USERNAME @database-specialist
+
+# Стили и дизайн
+/**/*.css @YOUR_USERNAME @ui-designer
+/**/*.scss @YOUR_USERNAME @ui-designer
+/tailwind.config.js @YOUR_USERNAME @ui-designer

@@ -1,0 +1,87 @@
+name: Bug report
+description: Create a report to help us improve
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+- type: markdown
+  attributes:
+    value: |
+      Thanks for taking the time to fill out this bug report!
+
+- type: textarea
+  id: what-happened
+  attributes:
+    label: What happened?
+    description: Describe the bug in detail. Include steps to reproduce the issue.
+    placeholder: |
+      1. Go to '...'
+      2. Click on '....'
+      3. See error
+  validations:
+    required: true
+
+- type: textarea
+  id: expected-behavior
+  attributes:
+    label: What did you expect to happen?
+    description: Describe what you expected to happen instead of the error.
+    placeholder: I expected the application to...
+
+- type: dropdown
+  id: browsers
+  attributes:
+    label: What browsers are you seeing the problem on?
+    multiple: true
+    options:
+      - Firefox
+      - Chrome
+      - Safari
+      - Microsoft Edge
+      - Mobile Browser
+
+- type: dropdown
+  id: operating-system
+  attributes:
+    label: What operating system are you using?
+    options:
+      - Windows
+      - macOS
+      - Linux
+      - iOS
+      - Android
+
+- type: input
+  id: version
+  attributes:
+    label: Version
+    description: What version of the application are you running?
+    placeholder: e.g., 1.0.0
+
+- type: textarea
+  id: logs
+  attributes:
+    label: Relevant log output
+    description: Please paste any relevant log output here.
+    render: shell
+
+- type: checkboxes
+  id: terms
+  attributes:
+    label: Checklist
+    description: By submitting this issue, you agree to follow our Code of Conduct
+    options:
+      - label: I have read and agree to the Code of Conduct
+        required: true
+      - label: I have searched for existing issues
+        required: true
+      - label: I have provided reproduction steps
+        required: true
+
+- type: textarea
+  id: additional-context
+  attributes:
+    label: Additional context
+    description: Add any other context about the problem here.
+    placeholder: Screenshots, code snippets, etc.
