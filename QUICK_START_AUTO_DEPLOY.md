@@ -6,6 +6,8 @@
 - ✅ **Все файлы загружены**: 95+ файлов с полной функциональностью
 - ✅ **CI/CD настроен**: GitHub Actions готов к работе
 - ✅ **Production конфигурация**: Docker, Nginx, мониторинг
+- ✅ **OpenRouter API ключ получен**: `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`
+- ✅ **Multi-AI поддержка**: 6 AI провайдеров с автоматическим выбором
 
 ## 🎯 Следующие шаги (выберите вариант)
 
@@ -21,7 +23,20 @@
 1. Зайдите на https://railway.app
 2. Подключите GitHub репозиторий `zaurFarm/fazner-ai-platform`
 3. Выберите папку `backend`
-4. Добавьте environment variables из `.env.production.template`
+4. Добавьте environment variables:
+   ```
+   OPENROUTER_API_KEY=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
+   JWT_SECRET=generated_value_from_openssl
+   SESSION_SECRET=generated_value_from_openssl
+   ```
+
+#### **🔐 GitHub Secrets (ОБЯЗАТЕЛЬНО!):**
+Добавьте в Settings → Secrets and variables → Actions:
+```
+OPENROUTER_API_KEY=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
+JWT_SECRET=your_generated_jwt_secret
+SESSION_SECRET=your_generated_session_secret
+```
 
 ### **Вариант 2: VPS сервер (Полный контроль)**
 
@@ -45,12 +60,27 @@ chmod +x deploy-production.sh
 
 ---
 
-## 🔐 ОБЯЗАТЕЛЬНО: Настройте секреты
+## 🔐 ОБЯЗАТЕЛЬНО: Завершите настройку секретов
 
-### **Получите OpenRouter API ключ:**
-1. Зайдите на: https://openrouter.ai/keys
-2. Создайте новый API ключ
-3. Добавьте в GitHub Secrets: `OPENROUTER_API_KEY`
+### **✅ OpenRouter API ключ уже получен!**
+### **Теперь сгенерируйте остальные секреты:**
+
+Выполните эти команды для генерации безопасных ключей:
+
+```bash
+# Генерация JWT_SECRET
+openssl rand -base64 32
+
+# Генерация SESSION_SECRET  
+openssl rand -base64 32
+```
+
+### **Добавьте все секреты в GitHub:**
+Settings → Secrets and variables → Actions → New repository secret:
+
+1. `OPENROUTER_API_KEY` = `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`
+2. `JWT_SECRET` = (результат первой команды)
+3. `SESSION_SECRET` = (результат второй команды)
 
 ### **В GitHub репозитории:**
 1. Settings → Secrets and variables → Actions
