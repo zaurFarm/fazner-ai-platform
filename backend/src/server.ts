@@ -9,26 +9,27 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import dotenv from 'dotenv';
 
-// Import clean configs
-import { databaseConfig as db } from '@/config/database';
-import { redisConfig as redis } from '@/config/redis';
+// Simple logger for Railway
+const logger = {
+  info: (message: string, meta?: any) => console.log(`[INFO] ${message}`, meta || ''),
+  error: (message: string, meta?: any) => console.error(`[ERROR] ${message}`, meta || ''),
+  warn: (message: string, meta?: any) => console.warn(`[WARN] ${message}`, meta || ''),
+  debug: (message: string, meta?: any) => console.debug(`[DEBUG] ${message}`, meta || ''),
+};
 
-// Import routes
-import authRoutes from '@/routes/auth';
-import userRoutes from '@/routes/user';
-import projectRoutes from '@/routes/projects';
-import agentRoutes from '@/routes/agents';
-import chatRoutes from '@/routes/chat';
-import fileRoutes from '@/routes/files';
-import analyticsRoutes from '@/routes/analytics';
-import systemRoutes from '@/routes/system';
-import aiMultiRoutes from '@/routes/ai-multi';
+// Simple database config
+const databaseConfig = {
+  url: process.env.DATABASE_URL || 'postgresql://localhost:5432/fazner_ai_platform',
+  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+};
 
-// Import middleware
-import { errorHandler } from '@/middleware/errorHandler';
-import { notFound } from '@/middleware/notFound';
-import { auth } from '@/middleware/auth';
-import { logger } from '@/utils/logger';
+// Simple Redis config
+const redisConfig = {
+  url: process.env.REDIS_URL || 'redis://localhost:6379',
+  maxRetriesPerRequest: null,
+  enableReadyCheck: false,
+  lazyConnect: true,
+};
 
 dotenv.config();
 
@@ -65,16 +66,33 @@ app.use(session({
   cookie: { secure: process.env.NODE_ENV === 'production' }
 }));
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/user', userRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/agents', agentRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/files', fileRoutes);
-app.use('/api/analytics', analyticsRoutes);
-app.use('/api/system', systemRoutes);
-app.use('/api/ai', aiMultiRoutes);
+// Simple AI routes
+app.post('/api/ai/chat', (req, res) => {
+  const { message, provider = 'openai' } = req.body;
+  logger.info('AI chat request', { provider, messageLength: message?.length });
+  
+  res.json({
+    success: true,
+    response: `Hello! This is a simple response from ${provider}. Your message: "${message}"`,
+    provider,
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.get('/api/ai/providers', (req, res) => {
+  res.json({
+    success: true,
+    providers: ['openai', 'anthropic', 'openrouter', 'groq', 'cohere']
+  });
+});
+
+app.get('/api/ai/status', (req, res) => {
+  res.json({
+    success: true,
+    status: 'operational',
+    timestamp: new Date().toISOString()
+  });
+});
 
 // Health check
 app.get('/health', (req, res) => {
@@ -85,16 +103,29 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Error handling
-app.use(notFound);
-app.use(errorHandler);
+// Error handling middleware
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  logger.error('Server error', { error: err.message });
+  res.status(500).json({
+    success: false,
+    error: 'Internal server error'
+  });
+});
+
+// 404 handler
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    error: 'Not found'
+  });
+});
 
 // Start server
 app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`, { 
     environment: process.env.NODE_ENV || 'development',
-    database: db.url,
-    redis: redis.url
+    database: databaseConfig.url,
+    redis: redisConfig.url
   });
 });
 
