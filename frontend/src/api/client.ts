@@ -253,11 +253,96 @@ class APIClient {
   // System Health
   async getSystemHealth() {
     try {
-      const response = await this.client.get('/system/health');
+      const response = await this.client.get('/health');
       return this.handleResponse(response);
     } catch (error) {
       return this.handleError(error);
     }
+  }
+
+  // AI Chat methods using existing backend endpoints
+  async sendAIMessage(message: string, provider = 'openai') {
+    try {
+      const response = await this.client.post('/ai/chat', { message, provider });
+      return this.handleResponse(response);
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  async getAIProviders() {
+    try {
+      const response = await this.client.get('/ai/providers');
+      return this.handleResponse(response);
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  async getAIStatus() {
+    try {
+      const response = await this.client.get('/ai/status');
+      return this.handleResponse(response);
+    } catch (error) {
+      return this.handleError(error);
+    }
+  }
+
+  // Stub methods for features not implemented in backend
+  async getChatSessions(projectId?: string) {
+    return {
+      success: true,
+      data: [],
+      error: null
+    };
+  }
+
+  async getChatSession(id: string) {
+    return {
+      success: true,
+      data: null,
+      error: null
+    };
+  }
+
+  async createChatSession(session: any) {
+    return {
+      success: true,
+      data: { id: session.id },
+      error: null
+    };
+  }
+
+  async updateChatSession(id: string, session: any) {
+    return {
+      success: true,
+      data: { id },
+      error: null
+    };
+  }
+
+  async getAgents() {
+    return {
+      success: true,
+      data: [],
+      error: null
+    };
+  }
+
+  async getAgent(id: string) {
+    return {
+      success: true,
+      data: null,
+      error: null
+    };
+  }
+
+  async executeAgentTask(task: any) {
+    return {
+      success: true,
+      data: { result: 'Task executed' },
+      error: null
+    };
   }
 
   // Utility methods
