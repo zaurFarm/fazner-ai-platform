@@ -1,7 +1,7 @@
 {
   "name": "fazner-ai-platform-backend",
   "version": "1.0.0",
-  "description": "Backend API for Fazner AI Platform",
+  "description": "Backend API for Fazner AI Platform with Multi-AI Provider Support",
   "main": "dist/server.js",
   "scripts": {
     "dev": "nodemon --exec ts-node src/server.ts",
@@ -21,7 +21,13 @@
     "platform",
     "api",
     "express",
-    "typescript"
+    "typescript",
+    "openai",
+    "anthropic",
+    "openrouter",
+    "groq",
+    "cohere",
+    "multi-provider"
   ],
   "author": "Fazner AI Team",
   "license": "MIT",

@@ -20,6 +20,7 @@ import chatRoutes from '@/routes/chat';
 import fileRoutes from '@/routes/files';
 import analyticsRoutes from '@/routes/analytics';
 import systemRoutes from '@/routes/system';
+import aiMultiRoutes from '@/routes/ai-multi';
 
 // Import middleware
 import { errorHandler } from '@/middleware/errorHandler';
@@ -140,6 +141,9 @@ app.use('/api/chat', authMiddleware, chatRoutes);
 app.use('/api/files', authMiddleware, fileRoutes);
 app.use('/api/analytics', authMiddleware, analyticsRoutes);
 app.use('/api/system', authMiddleware, systemRoutes);
+
+// AI Multi-Provider routes (with fallback and optimization)
+app.use('/api/ai', aiMultiRoutes);
 
 // WebSocket events
 io.use((socket, next) => {
